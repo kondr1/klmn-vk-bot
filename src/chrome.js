@@ -7,8 +7,8 @@ let page = null
 
 const sleep = t => new Promise((resolve) => setTimeout(() => resolve(), t))
 
-export async function runChrome () {
-  if (browser.isConnected()) {
+async function runChrome () {
+  if (browser && browser.isConnected()) {
     if (!page.isClosed()) {
       return true
     } else {
@@ -33,7 +33,7 @@ export async function runChrome () {
   return true
 }
 
-export async function downloadFiles () {
+async function downloadFiles () {
   await page.goto('http://24shkola.ucoz.ru/index/10a-klass/0-171')
   const links = await page.$x('//div[@id=\'content\']//a')
   for (const a of links) {
@@ -42,7 +42,7 @@ export async function downloadFiles () {
   }
 }
 
-export async function cleanFolder () {
+async function cleanFolder () {
   fs.readdir(process.env.OUTDIR, (err, files) => {
     if (err) throw err
 
@@ -52,4 +52,10 @@ export async function cleanFolder () {
       })
     }
   })
+}
+
+module.exports = {
+  runChrome,
+  downloadFiles,
+  cleanFolder
 }

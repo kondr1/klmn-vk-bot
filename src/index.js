@@ -1,12 +1,20 @@
-const VkBot = require('node-vk-bot-api')
+const { VK } = require('vk-io')
 
-const bot = new VkBot(process.env.TOKEN)
+const { runChrome, downloadFiles } = require('./chrome')
 
-bot.command('/Углепластик охлади траханье', (ctx) => {
-  ctx.reply('Траханье охлажденно')
-})
-bot.command('/start', (ctx) => {
-  ctx.reply('Привет')
+const vk = new VK({
+  token: process.env.TOKEN,
+  pollingGroupId: process.env.GROUP_ID
 })
 
-bot.startPolling()
+vk.updates.hear(/охлади/i, context => {
+  context.send({ message: 'Траханье охлаждено' })
+  context.sendPhotos('https://sun9-72.userapi.com/c635103/v635103336/5bd0c/JghR3bL4SGY.jpg')
+})
+
+vk.updates.hear(/чекни/i, async context => {
+  await runChrome()
+  await downloadFiles()
+})
+
+vk.updates.startPolling().catch(console.error)

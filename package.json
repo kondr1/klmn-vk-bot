@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "md5-file": "^5.0.0",
-    "node-vk-bot-api": "^3.3.4",
+    "vk-io": "^4.0.0-rc.30",
     "puppeteer": "^3.0.0"
   }
 }

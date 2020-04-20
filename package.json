@@ -1,0 +1,22 @@
+{
+  "name": "klmn-vk-bot",
+  "version": "1.0.0",
+  "description": "Бот для вк",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Konstantin Kondr <i@kondr1.ru>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kondr1/klmn-vk-bot"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "standard": "^14.3.3"
+  },
+  "dependencies": {
+    "node-vk-bot-api": "^3.3.4",
+    "puppeteer": "^3.0.0"
+  }
+}

@@ -16,6 +16,7 @@
     "standard": "^14.3.3"
   },
   "dependencies": {
+    "md5-file": "^5.0.0",
     "node-vk-bot-api": "^3.3.4",
     "puppeteer": "^3.0.0"
   }

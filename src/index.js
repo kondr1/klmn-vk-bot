@@ -1,6 +1,12 @@
 const { VK } = require('vk-io')
-
+const Koa = require('koa')
 const { runChrome, downloadFiles } = require('./chrome')
+
+const app = new Koa()
+
+app.use(async ctx => {
+  ctx.body = '111'
+})
 
 const vk = new VK({
   token: process.env.TOKEN,
@@ -18,3 +24,4 @@ vk.updates.hear(/чекни/i, async context => {
 })
 
 vk.updates.startPolling().catch(console.error)
+app.listen(process.env.PORT)

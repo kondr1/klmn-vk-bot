@@ -17,8 +17,9 @@
     "standard": "^14.3.3"
   },
   "dependencies": {
+    "koa": "^2.11.0",
     "md5-file": "^5.0.0",
-    "vk-io": "^4.0.0-rc.30",
-    "puppeteer": "^3.0.0"
+    "puppeteer": "^3.0.0",
+    "vk-io": "^4.0.0-rc.30"
   }
 }

@@ -1,0 +1,39 @@
+{
+  "name": "Бот для вк",
+  "description": "Умеет проверять появились ли новые домашние задания для 10А класса какой-то там школы ",
+  "repository": "https://github.com/kondr1/klmn-vk-bot",
+  "logo": "https://sun9-11.userapi.com/c840729/v840729120/4e327/oDRZDa--OME.jpg",
+  "env": {
+    "MONGODB_URI": {
+      "description": "Строка соединения для монги"
+    },
+    "CONFIRM": {
+      "description": "Строка подтверждения вк"
+    },
+    "SECRET": {
+      "description": "секрет в группе вк для колбекапи",
+      "generator":"secret"
+    },
+    "TOKEN": {
+      "description": "токен бота"
+    },
+    "GROUP_ID": {
+      "description": "The number of processes to run."
+    },
+    "OUTDIR": {
+      "description": "папочка куда файлики сохраняет",
+      "value":"/tmp"
+    },
+    "HOMEWORK_URL": {
+      "description": "Адрес страницы с домашкой"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/jontewks/puppeteer-heroku-buildpack.git"
+    }
+  ]
+}

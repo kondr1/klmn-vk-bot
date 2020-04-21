@@ -34,7 +34,7 @@ async function runChrome () {
 }
 
 async function downloadFiles () {
-  await page.goto('http://24shkola.ucoz.ru/index/10a-klass/0-171')
+  await page.goto(process.env.HOMEWORK_URL)
   const links = await page.$x('//div[@id=\'content\']//a')
   for (const a of links) {
     await sleep(1543)

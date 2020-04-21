@@ -16,7 +16,7 @@ async function runChrome () {
       return true
     }
   }
-  browser = await pptr.launch()
+  browser = await pptr.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
 
   await browser.on('targetcreated', async () => {
     const pageList = await browser.pages()

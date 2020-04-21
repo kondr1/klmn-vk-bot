@@ -38,7 +38,7 @@ async function downloadFiles () {
   const links = await page.$x('//div[@id=\'content\']//a')
   for (const a of links) {
     await sleep(1543)
-    await a.click()
+    await a.click({ button: 'middle' })
   }
 }
 

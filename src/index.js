@@ -1,5 +1,7 @@
 const { VK } = require('vk-io')
 const { runChrome, downloadFiles } = require('./chrome')
+const getHashes = require('./hash')
+const mongo = require('./mongo')
 
 const vk = new VK({
   token: process.env.TOKEN,
@@ -16,6 +18,13 @@ vk.updates.hear(/охлади/i, context => {
 vk.updates.hear(/чекни/i, async context => {
   await runChrome()
   await downloadFiles()
+  const hashs = await getHashes(process.env.OUTDIR)
+  for (const h of hashs) {
+    const ok = (await mongo()).checkFile(h.file)
+    if (!ok) {
+      context.send({ message: `Файлик ${h.file} обновился` })
+    }
+  }
 })
 
 vk.updates.start({

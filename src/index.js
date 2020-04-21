@@ -3,7 +3,9 @@ const { runChrome, downloadFiles } = require('./chrome')
 
 const vk = new VK({
   token: process.env.TOKEN,
-  pollingGroupId: process.env.GROUP_ID
+  pollingGroupId: process.env.GROUP_ID,
+  webhookSecret: process.env.SECRET,
+  webhookConfirmation: process.env.CONFIRM
 })
 
 vk.updates.hear(/охлади/i, context => {

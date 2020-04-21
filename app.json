@@ -2,7 +2,7 @@
   "name": "Бот для вк",
   "description": "Умеет проверять появились ли новые домашние задания для 10А класса какой-то там школы ",
   "repository": "https://github.com/kondr1/klmn-vk-bot",
-  "logo": "https://sun9-11.userapi.com/c840729/v840729120/4e327/oDRZDa--OME.jpg",
+  "logo": "https://sun1-27.userapi.com/EfZsXLkrPzGUrz7I_XQDFbypPHL2GKN0h6RGhQ/qHIdrHtyNP0.jpg",
   "env": {
     "MONGODB_URI": {
       "description": "Строка соединения для монги"

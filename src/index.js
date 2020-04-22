@@ -16,14 +16,22 @@ vk.updates.hear(/охлади/i, context => {
 })
 
 vk.updates.hear(/чекни/i, async context => {
-  await runChrome()
-  await downloadFiles()
-  const hashs = await getHashes(process.env.OUTDIR)
-  for (const h of hashs) {
-    const ok = (await mongo()).checkFile(h.file)
-    if (!ok) {
-      context.send({ message: `Файлик ${h.file} обновился` })
+  context.send('Ща чекну, погоди')
+  try {
+    await runChrome()
+    await downloadFiles()
+    const hashs = await getHashes(process.env.OUTDIR)
+    let haveNoUpdates = true
+    for (const h of hashs) {
+      const ok = (await mongo()).checkFile(h.file)
+      if (!ok) {
+        haveNoUpdates = false
+        context.send({ message: `⚠ Файлик ${h.file} обновился ⚠` })
+      }
     }
+    if (haveNoUpdates) context.send('Ничего не поменялось, со времени предыдущей проверки, все норм 😎')
+  } catch (err) {
+    context.send('Чет у меня не получается чекнуть 😥')
   }
 })
 

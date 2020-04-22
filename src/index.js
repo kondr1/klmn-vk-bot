@@ -20,9 +20,16 @@ vk.updates.hear(/чекни/i, async context => {
   try {
     await runChrome()
     await downloadFiles()
-    const hashs = await getHashes(process.env.OUTDIR)
+    const hashes = await getHashes(process.env.OUTDIR)
+    if (hashes && hashes.length > 0) {
+      context.send(`Лежит там ${hashes.length} файликов с задачами`)
+      for (const h of hashes) {
+        context.send(`${h.file}`)
+      }
+      context.send('Смотрю все ли там ок')
+    }
     let haveNoUpdates = true
-    for (const h of hashs) {
+    for (const h of hashes) {
       const ok = (await mongo()).checkFile(h.file)
       if (!ok) {
         haveNoUpdates = false

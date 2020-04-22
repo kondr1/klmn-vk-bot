@@ -34,7 +34,7 @@ vk.updates.hear(/чекни/i, async context => {
       const ok = await (await mongo()).checkFile(file, hash)
       if (!ok) {
         haveNoUpdates = false
-        context.send({
+        context.sendDocument({
           value: hrefs.filter(h => h.indexOf(file) > -1)[0],
           filename: `${file}`
         },

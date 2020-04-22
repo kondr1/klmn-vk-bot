@@ -34,11 +34,14 @@ async function downloadFiles () {
   await page.goto(process.env.HOMEWORK_URL)
 
   const links = await page.$x('//div[@id=\'content\']//a')
+  const hrefs = []
   for (const a of links) {
     await page.waitFor(1543)
     await a.click({ button: 'middle' })
+    hrefs.push(a.getProperty('href'))
   }
   await page.waitFor(2000)
+  return hrefs
 }
 
 async function cleanFolder () {

@@ -19,7 +19,7 @@ vk.updates.hear(/чекни/i, async context => {
   context.send('Ща чекну, погоди')
   try {
     await runChrome()
-    await downloadFiles()
+    const hrefs = await downloadFiles()
     const hashes = await getHashes(process.env.OUTDIR)
     if (hashes && hashes.length > 0) {
       context.send(`Лежит там ${hashes.length} файликов с задачами`)
@@ -36,6 +36,7 @@ vk.updates.hear(/чекни/i, async context => {
       if (!ok) {
         haveNoUpdates = false
         context.send({ message: `⚠ Файлик ${h.file} обновился ⚠` })
+        context.sendDocument(hrefs.filter(h => h.contains(h.file))[0])
       }
     }
     if (haveNoUpdates) context.send('Ничего не поменялось, со времени предыдущей проверки, все норм 😎')

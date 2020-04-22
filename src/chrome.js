@@ -36,7 +36,7 @@ async function downloadFiles () {
   const links = await page.$x('//div[@id=\'content\']//a')
   const hrefs = []
   for (const a of links) {
-    const href = await a.getProperty('href')
+    const href = await (await a.getProperty('href')).jsonValue()
     console.log(href)
     await page.waitFor(1543)
     hrefs.push(href)

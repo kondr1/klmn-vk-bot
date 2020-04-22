@@ -34,8 +34,11 @@ vk.updates.hear(/чекни/i, async context => {
       const ok = await (await mongo()).checkFile(file, hash)
       if (!ok) {
         haveNoUpdates = false
-        context.send({ message: `⚠ Файлик ${file} обновился ⚠` })
-        context.sendDocument(hrefs.filter(h => h.indexOf(file) > -1)[0])
+        context.send({
+          value: hrefs.filter(h => h.indexOf(file) > -1)[0],
+          filename: `${file}`
+        },
+        { message: `⚠ Файлик ${file} обновился ⚠` })
       }
     }
     if (haveNoUpdates) context.send('Ничего не поменялось, со времени предыдущей проверки, все норм 😎')

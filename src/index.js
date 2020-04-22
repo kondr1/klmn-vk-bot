@@ -9,12 +9,12 @@ const vk = new VK({
   webhookConfirmation: process.env.CONFIRM
 })
 
-vk.updates.hear(/охлади/i, context => {
+vk.updates.hear(/!охлади/i, context => {
   context.send({ message: 'Траханье охлаждено' })
   context.sendPhotos('https://sun9-72.userapi.com/c635103/v635103336/5bd0c/JghR3bL4SGY.jpg')
 })
 
-vk.updates.hear(/чекни/i, async context => {
+vk.updates.hear(/!чекни/i, async context => {
   context.send('Ща чекну, погоди')
   try {
     await runChrome()
@@ -34,7 +34,7 @@ vk.updates.hear(/чекни/i, async context => {
       const ok = await (await mongo()).checkFile(file, hash)
       if (!ok) {
         haveNoUpdates = false
-        context.sendDocument({
+        context.sendDocument({ // TODO: Deprecated. Need use sendDocuments
           value: hrefs.filter(h => h.indexOf(file) > -1)[0],
           filename: `${file}`
         },

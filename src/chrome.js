@@ -5,8 +5,6 @@ const path = require('path')
 let browser = null
 let page = null
 
-const sleep = t => new Promise((resolve) => setTimeout(() => resolve(), t))
-
 async function runChrome () {
   if (browser && browser.isConnected()) { return true }
 
@@ -37,9 +35,10 @@ async function downloadFiles () {
 
   const links = await page.$x('//div[@id=\'content\']//a')
   for (const a of links) {
-    await sleep(1543)
+    await page.waitFor(1543)
     await a.click({ button: 'middle' })
   }
+  await page.waitFor(2000)
 }
 
 async function cleanFolder () {

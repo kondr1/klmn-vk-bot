@@ -27,6 +27,8 @@ vk.updates.hear(/чекни/i, async context => {
         context.send(`${h.file}`)
       }
       context.send('Смотрю все ли там ок')
+    } else {
+      context.send('Я почему-то не нашел файликов')
     }
     let haveNoUpdates = true
     for (const h of hashes) {

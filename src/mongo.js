@@ -30,12 +30,14 @@ async function mongo () {
       }
 
       if (results && results.length > 0) {
+        console.log(`${filename} hash ${hash} in mongo is ${results[0].hash}`)
         if (results[0].hash !== hash) {
           db.collection(collectionName1).updateOne(results[0], { $set: { hash: hash } })
         } else {
           return true
         }
       } else {
+        console.log(`${filename} hash ${hash} not in db`)
         try {
           db.collection(collectionName1).insertOne({
             filename: filename,

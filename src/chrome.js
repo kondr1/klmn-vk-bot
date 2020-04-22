@@ -8,14 +8,8 @@ let page = null
 const sleep = t => new Promise((resolve) => setTimeout(() => resolve(), t))
 
 async function runChrome () {
-  if (browser && browser.isConnected()) {
-    if (!page.isClosed()) {
-      return true
-    } else {
-      page = await browser.newPage()
-      return true
-    }
-  }
+  if (browser && browser.isConnected()) { return true }
+
   browser = await pptr.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
 
   await browser.on('targetcreated', async () => {
@@ -34,7 +28,13 @@ async function runChrome () {
 }
 
 async function downloadFiles () {
+  const pageList = await browser.pages()
+  pageList.forEach(p => p.close())
+
+  page = await browser.newPage()
+
   await page.goto(process.env.HOMEWORK_URL)
+
   const links = await page.$x('//div[@id=\'content\']//a')
   for (const a of links) {
     await sleep(1543)

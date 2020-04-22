@@ -5,7 +5,6 @@ const mongo = require('./mongo')
 
 const vk = new VK({
   token: process.env.TOKEN,
-  pollingGroupId: process.env.GROUP_ID,
   webhookSecret: process.env.SECRET,
   webhookConfirmation: process.env.CONFIRM
 })

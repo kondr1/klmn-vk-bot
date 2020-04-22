@@ -17,9 +17,6 @@
     "TOKEN": {
       "description": "токен бота"
     },
-    "GROUP_ID": {
-      "description": "The number of processes to run."
-    },
     "OUTDIR": {
       "description": "папочка куда файлики сохраняет",
       "value":"/tmp"

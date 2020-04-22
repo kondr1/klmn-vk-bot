@@ -32,7 +32,7 @@ vk.updates.hear(/чекни/i, async context => {
     }
     let haveNoUpdates = true
     for (const { file, hash } of hashes) {
-      const ok = (await mongo()).checkFile(file, hash)
+      const ok = await (await mongo()).checkFile(file, hash)
       if (!ok) {
         haveNoUpdates = false
         context.send({ message: `⚠ Файлик ${file} обновился ⚠` })

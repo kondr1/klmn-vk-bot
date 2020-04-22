@@ -36,12 +36,13 @@ vk.updates.hear(/чекни/i, async context => {
       if (!ok) {
         haveNoUpdates = false
         context.send({ message: `⚠ Файлик ${file} обновился ⚠` })
-        context.sendDocument(hrefs.filter(h => h.contains(file))[0])
+        context.sendDocument(hrefs.filter(h => h.indexOf(file) > -1)[0])
       }
     }
     if (haveNoUpdates) context.send('Ничего не поменялось, со времени предыдущей проверки, все норм 😎')
   } catch (err) {
     context.send('Чет у меня не получается чекнуть 😥')
+    console.log(`chck err: ${err}`)
   }
 })
 

@@ -38,7 +38,7 @@ async function downloadFiles () {
   for (const a of links) {
     await page.waitFor(1543)
     await a.click({ button: 'middle' })
-    hrefs.push(a.getProperty('href'))
+    hrefs.push(await a.getProperty('href'))
   }
   await page.waitFor(2000)
   return hrefs
